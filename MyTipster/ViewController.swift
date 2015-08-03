@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         billField.text = "$"
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
     }
-    
+   
     @IBAction func onEditingAmount(sender: AnyObject) {
         var tipPercentages = [0.18,0.2,0.25]
         var selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
@@ -50,6 +51,31 @@ class ViewController: UIViewController {
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        println("view will appear")
+        
+        //TODO: create fn for getting saved index
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var savedTipControlIndex = defaults.integerForKey("defaultTipControlIndex")
+        tipControl.selectedSegmentIndex = savedTipControlIndex
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("view did appear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        println("view will disappear")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("view did disappear")
     }
 }
 
