@@ -9,13 +9,22 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
-    @IBOutlet weak var tipPercentage: UISegmentedControl!
+    
+    
+    @IBOutlet weak var defaultTipControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        var tipPercentages = ["18", "20", "25"]  //TODO is this right?
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var savedTip = defaults.valueForKey("defaultTipSelected")
+        var savedTipControlIndex = defaults.integerForKey("defaultTipControlIndex")
+        
+        defaultTipControl.selectedSegmentIndex = savedTipControlIndex
+  
+        println("saved tips is \(savedTip)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,5 +42,36 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+
+    @IBAction func onDefaultTipChanged(sender: AnyObject) {
+        println("default tip changed")
+        
+        var tipPercentages = ["18", "20", "25"]
+        var defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(tipPercentages[defaultTipControl.selectedSegmentIndex], forKey: "defaultTipSelected")
+        defaults.setInteger(defaultTipControl.selectedSegmentIndex, forKey: "defaultTipControlIndex")
+        defaults.synchronize()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        println("settings view will appear")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("settings view did appear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        println("settings view will disappear")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("settings view did disappear")
+    }
 
 }
