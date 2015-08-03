@@ -58,14 +58,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F11FE94E1B6EE4D30018EFD5 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				F11FE94C1B6EE4A60018EFD5 /* SettingsViewController.swift */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
 		F1CD44F41B6DDD6100BA6014 = {
 			isa = PBXGroup;
 			children = (
@@ -87,8 +79,8 @@
 		F1CD44FF1B6DDD6100BA6014 /* MyTipster */ = {
 			isa = PBXGroup;
 			children = (
-				F11FE94E1B6EE4D30018EFD5 /* ViewControllers */,
 				F1CD45021B6DDD6100BA6014 /* AppDelegate.swift */,
+				F11FE94C1B6EE4A60018EFD5 /* SettingsViewController.swift */,
 				F1CD45041B6DDD6100BA6014 /* ViewController.swift */,
 				F1CD45061B6DDD6100BA6014 /* Main.storyboard */,
 				F1CD45091B6DDD6100BA6014 /* Images.xcassets */,
