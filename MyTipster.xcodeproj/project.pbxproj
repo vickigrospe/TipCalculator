@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F11FE94D1B6EE4A60018EFD5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11FE94C1B6EE4A60018EFD5 /* SettingsViewController.swift */; };
 		F1CD45031B6DDD6100BA6014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CD45021B6DDD6100BA6014 /* AppDelegate.swift */; };
 		F1CD45051B6DDD6100BA6014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CD45041B6DDD6100BA6014 /* ViewController.swift */; };
 		F1CD45081B6DDD6100BA6014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CD45061B6DDD6100BA6014 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F11FE94C1B6EE4A60018EFD5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F1CD44FD1B6DDD6100BA6014 /* MyTipster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTipster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CD45011B6DDD6100BA6014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1CD45021B6DDD6100BA6014 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F11FE94E1B6EE4D30018EFD5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F11FE94C1B6EE4A60018EFD5 /* SettingsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		F1CD44F41B6DDD6100BA6014 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		F1CD44FF1B6DDD6100BA6014 /* MyTipster */ = {
 			isa = PBXGroup;
 			children = (
+				F11FE94E1B6EE4D30018EFD5 /* ViewControllers */,
 				F1CD45021B6DDD6100BA6014 /* AppDelegate.swift */,
 				F1CD45041B6DDD6100BA6014 /* ViewController.swift */,
 				F1CD45061B6DDD6100BA6014 /* Main.storyboard */,
@@ -214,6 +225,7 @@
 			files = (
 				F1CD45051B6DDD6100BA6014 /* ViewController.swift in Sources */,
 				F1CD45031B6DDD6100BA6014 /* AppDelegate.swift in Sources */,
+				F11FE94D1B6EE4A60018EFD5 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
