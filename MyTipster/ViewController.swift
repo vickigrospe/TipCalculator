@@ -44,7 +44,6 @@ class ViewController: UIViewController {
         else
         {
             var billAmount: Double = NSString(string: billField.text).doubleValue
-            
             var tip = billAmount * selectedTipPercentage
             var total = billAmount + tip
             
