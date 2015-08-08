@@ -16,15 +16,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        var tipPercentages = ["18", "20", "25"]  //TODO is this right?
         var defaults = NSUserDefaults.standardUserDefaults()
-        var savedTip = defaults.valueForKey("defaultTipSelected")
         var savedTipControlIndex = defaults.integerForKey("defaultTipControlIndex")
-        
         defaultTipControl.selectedSegmentIndex = savedTipControlIndex
-  
-        println("saved tips is \(savedTip)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,24 +26,10 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-
     @IBAction func onDefaultTipChanged(sender: AnyObject) {
         println("default tip changed")
         
-        var tipPercentages = ["18", "20", "25"]
         var defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(tipPercentages[defaultTipControl.selectedSegmentIndex], forKey: "defaultTipSelected")
         defaults.setInteger(defaultTipControl.selectedSegmentIndex, forKey: "defaultTipControlIndex")
         defaults.synchronize()
     }
