@@ -36,22 +36,18 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("settings view will appear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("settings view did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("settings view will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("settings view did disappear")
     }
 
 }

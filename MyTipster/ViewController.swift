@@ -19,16 +19,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        billField.becomeFirstResponder()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
@@ -39,7 +35,7 @@ class ViewController: UIViewController {
         var selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         
         if billField.text == "" {
-            hideElements(true)
+            self.hideElements(true)
         }
         else
         {
@@ -49,11 +45,10 @@ class ViewController: UIViewController {
             
             tipValue.text = "$\(tip)"
             totalValue.text = "$\(total)"
-            
             tipValue.text = String(format: "$%.2f", tip)
             totalValue.text = String(format: "$%.2f", total)
             
-            hideElements(false)
+            self.hideElements(false)
         }
         
     }
@@ -66,29 +61,43 @@ class ViewController: UIViewController {
         tipControl.hidden = hide
     }
     
+    func updateValues() {
+        if (billField.text != "'") {
+            var billAmount: Double = NSString(string: billField.text).doubleValue
+            var tipPercentages = [0.18,0.2,0.25]
+            var tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
+            var total = billAmount + tip
+            
+            tipValue.text = "$\(tip)"
+            totalValue.text = "$\(total)"
+            tipValue.text = String(format: "$%.2f", tip)
+            totalValue.text = String(format: "$%.2f", total)
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println("view will appear")
         
-        //TODO: create fn for getting saved index
+        // Get saved tip control index
         var defaults = NSUserDefaults.standardUserDefaults()
         var savedTipControlIndex = defaults.integerForKey("defaultTipControlIndex")
         tipControl.selectedSegmentIndex = savedTipControlIndex
+        
+        // update tip and total values if necessary
+        self.updateValues()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("view did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("view will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("view did disappear")
     }
 }
 
