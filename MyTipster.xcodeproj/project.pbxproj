@@ -12,7 +12,6 @@
 		F1CD45051B6DDD6100BA6014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CD45041B6DDD6100BA6014 /* ViewController.swift */; };
 		F1CD45081B6DDD6100BA6014 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CD45061B6DDD6100BA6014 /* Main.storyboard */; };
 		F1CD450A1B6DDD6100BA6014 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CD45091B6DDD6100BA6014 /* Images.xcassets */; };
-		F1CD450D1B6DDD6100BA6014 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1CD450B1B6DDD6100BA6014 /* LaunchScreen.xib */; };
 		F1CD45191B6DDD6100BA6014 /* MyTipsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CD45181B6DDD6100BA6014 /* MyTipsterTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		F1CD45041B6DDD6100BA6014 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F1CD45071B6DDD6100BA6014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F1CD45091B6DDD6100BA6014 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F1CD450C1B6DDD6100BA6014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F1CD45121B6DDD6100BA6014 /* MyTipsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTipsterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CD45171B6DDD6100BA6014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1CD45181B6DDD6100BA6014 /* MyTipsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTipsterTests.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				F1CD45041B6DDD6100BA6014 /* ViewController.swift */,
 				F1CD45061B6DDD6100BA6014 /* Main.storyboard */,
 				F1CD45091B6DDD6100BA6014 /* Images.xcassets */,
-				F1CD450B1B6DDD6100BA6014 /* LaunchScreen.xib */,
 				F1CD45001B6DDD6100BA6014 /* Supporting Files */,
 			);
 			path = MyTipster;
@@ -196,7 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1CD45081B6DDD6100BA6014 /* Main.storyboard in Resources */,
-				F1CD450D1B6DDD6100BA6014 /* LaunchScreen.xib in Resources */,
 				F1CD450A1B6DDD6100BA6014 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,14 +242,6 @@
 				F1CD45071B6DDD6100BA6014 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F1CD450B1B6DDD6100BA6014 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F1CD450C1B6DDD6100BA6014 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
