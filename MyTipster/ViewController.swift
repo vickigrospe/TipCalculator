@@ -31,26 +31,14 @@ class ViewController: UIViewController {
     }
    
     @IBAction func onEditingAmount(sender: AnyObject) {
-        var tipPercentages = [0.18,0.2,0.25]
-        var selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
-        
         if billField.text == "" {
             self.hideElements(true)
         }
         else
         {
-            var billAmount: Double = NSString(string: billField.text).doubleValue
-            var tip = billAmount * selectedTipPercentage
-            var total = billAmount + tip
-            
-            tipValue.text = "$\(tip)"
-            totalValue.text = "$\(total)"
-            tipValue.text = String(format: "$%.2f", tip)
-            totalValue.text = String(format: "$%.2f", total)
-            
+            self.updateValues()
             self.hideElements(false)
         }
-        
     }
     
     func hideElements(hide: Bool) {
@@ -62,9 +50,10 @@ class ViewController: UIViewController {
     }
     
     func updateValues() {
-        if (billField.text != "'") {
+        var tipPercentages = [0.18,0.2,0.22]
+    
+        if (billField.text != "") {
             var billAmount: Double = NSString(string: billField.text).doubleValue
-            var tipPercentages = [0.18,0.2,0.25]
             var tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
             var total = billAmount + tip
             
@@ -77,7 +66,6 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println("view will appear")
         
         // Get saved tip control index
         var defaults = NSUserDefaults.standardUserDefaults()
