@@ -16,8 +16,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var savedTipControlIndex = defaults.integerForKey("defaultTipControlIndex")
+        var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
         defaultTipControl.selectedSegmentIndex = savedTipControlIndex
     }
 
@@ -27,8 +26,6 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onDefaultTipChanged(sender: AnyObject) {
-        println("default tip changed")
-        
         var defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(defaultTipControl.selectedSegmentIndex, forKey: "defaultTipControlIndex")
         defaults.synchronize()

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+            
         // Get saved tip control index
         var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
         tipControl.selectedSegmentIndex = savedTipControlIndex

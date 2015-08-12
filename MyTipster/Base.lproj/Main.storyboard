@@ -7,7 +7,7 @@
         <!--Tip Calculator-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MyTipster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VC" id="vXZ-lx-hvc" customClass="ViewController" customModule="MyTipster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pe1-5J-t5h"/>
                         <viewControllerLayoutGuide type="bottom" id="AZF-LM-Hnh"/>
