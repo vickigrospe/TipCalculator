@@ -1,3 +1,5 @@
+
+
 //
 //  AppDelegate.swift
 //  MyTipster
@@ -29,18 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        println("app will resign")
-        // Save the current date
+
+        // Save the current date and bill amount
         var defaults = NSUserDefaults.standardUserDefaults()
+        var nav = self.window?.rootViewController as! UINavigationController
+        var vc = nav.viewControllers.first as! UIViewController
         
+        var billField: UITextField = vc.valueForKey("billField") as! UITextField
+        var billValue = billField.text
         
-        // save bill amt
-        //var billValue = theViewController.billField?.text
-        //println("the bill value is " + billValue!)
-        //defaults.setValue(billvalue!, forKey: "lastBillAmount")
+        defaults.setValue(billValue, forKey: "lastBillAmount")
         defaults.setValue(NSDate(), forKey: "lastSavedDate")
         defaults.synchronize()
-        
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -56,19 +58,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         var defaults = NSUserDefaults.standardUserDefaults()
-        
+        var nav = self.window?.rootViewController as! UINavigationController
+        var vc = nav.viewControllers.first as! ViewController
+        var billField: UITextField = vc.valueForKey("billField") as! UITextField
+
         if let lastSavedDate: NSDate = defaults.valueForKey("lastSavedDate") as? NSDate
         {
-            var timeInterval: NSTimeInterval = lastSavedDate.timeIntervalSinceNow
-            if timeInterval < 600 {
-                // Less than 10 minutes then restore last bill amount
-                println("less then 10 min")
+            var timeInterval : NSTimeInterval = lastSavedDate.timeIntervalSinceNow
+            if timeInterval > -600 {
+                // Less than 10 minutes, restore last bill amount
+                billField.text = defaults.valueForKey("lastBillAmount") as! String
             } else {
-                // clear bill amount
-                println("more than 10 min")
+                // More than 10 minutes, clear fields
+                billField.text = ""
             }
+            vc.updateValues()
+            vc.billField.becomeFirstResponder()
         }
-        
     }
 
     func applicationWillTerminate(application: UIApplication) {

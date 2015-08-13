@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated) //?ß
             
         // Get saved tip control index
         var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
@@ -56,15 +56,7 @@ class ViewController: UIViewController {
     }
    
     @IBAction func onEditingAmount(sender: AnyObject) {
-        
-        if billField.text == "" {
-            //TODO: show initial view, animated (if we are clearing the bill amt)
-            self.hideElements(true)
-        } else {
-            //TODO: show the results view animated
-            self.updateValues()
-            self.hideElements(false)
-        }
+        self.updateValues()
     }
     
     func hideElements(hide: Bool) {
@@ -78,7 +70,11 @@ class ViewController: UIViewController {
     func updateValues() {
         let tipPercentages = [0.18,0.2,0.22]
     
-        if (billField.text != "") {
+        if (billField.text == "") {
+            //TODO: show initial view, animated (if we are clearing the bill amt)
+            self.hideElements(true)
+        } else {
+            //TODO: show the results view animated
             var billAmount: Double = NSString(string: billField.text).doubleValue
             var tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
             var total = billAmount + tip
@@ -87,6 +83,8 @@ class ViewController: UIViewController {
             totalValue.text = "$\(total)"
             tipValue.text = String(format: "$%.2f", tip)
             totalValue.text = String(format: "$%.2f", total)
+            
+            self.hideElements(false)
         }
     }
 }
