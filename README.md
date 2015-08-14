@@ -13,4 +13,5 @@ Completed User Stories:
  
  
 Walkthrough:
+
 ![Video Walkthrough](TipCalculator_VGrospe.gif)
