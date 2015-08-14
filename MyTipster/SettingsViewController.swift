@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
     
     
     @IBOutlet weak var defaultTipControl: UISegmentedControl!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class SettingsViewController: UIViewController {
         // Retrieve the default tip percentage
         var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
         defaultTipControl.selectedSegmentIndex = savedTipControlIndex
+    }
+    
+    @IBAction func onBackCicked(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func onDefaultTipChanged(sender: AnyObject) {
