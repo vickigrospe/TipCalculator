@@ -17,15 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated) //?ß
-            
-        // Get saved tip control index
-        var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
-        tipControl.selectedSegmentIndex = savedTipControlIndex
-        
-        // update tip and total values if necessary
-        self.updateValues()
-        self.billField.becomeFirstResponder()
+        super.viewWillAppear(animated)
+        self.showInitialView()
     }
     
     @IBAction func onTap(sender: AnyObject) {
@@ -34,6 +27,16 @@ class ViewController: UIViewController {
    
     @IBAction func onEditingAmount(sender: AnyObject) {
         self.updateValues()
+    }
+    
+    func showInitialView() {
+        // Get saved tip control index
+        let savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
+        tipControl.selectedSegmentIndex = savedTipControlIndex
+        
+        // update tip and total values
+        self.updateValues()
+        self.billField.becomeFirstResponder()
     }
     
     func hideElements(hide: Bool) {
@@ -46,7 +49,7 @@ class ViewController: UIViewController {
     
     func updateValues() {
         let tipPercentages = [0.18,0.2,0.22]
-    
+ 
         if (billField.text == "") {
             self.hideElements(true)
         } else {

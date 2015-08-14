@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var nav = self.window?.rootViewController as! UINavigationController
         var vc = nav.viewControllers.first as! ViewController
         var billField: UITextField = vc.valueForKey("billField") as! UITextField
+        println("app active");
 
         // If a timestamp was saved previously, then retrieve it
         if let lastSavedDate: NSDate = defaults.valueForKey("lastSavedDate") as? NSDate
@@ -69,8 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // More than 10 minutes, clear fields
                 billField.text = ""
             }
-            vc.updateValues()
-            vc.billField.becomeFirstResponder()
+            vc.showInitialView()
         }
     }
 
