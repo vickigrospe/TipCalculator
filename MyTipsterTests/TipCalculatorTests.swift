@@ -1,6 +1,6 @@
 //
-//  MyTipsterTests.swift
-//  MyTipsterTests
+//  TipCalculatorTests.swift
+//  TipCalculatorTests
 //
 //  Created by Vicki Chun on 8/1/15.
 //  Copyright (c) 2015 Vicki Grospe. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class MyTipsterTests: XCTestCase {
+class TipCalculatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
