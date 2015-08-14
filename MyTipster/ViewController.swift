@@ -16,11 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalValue: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated) //?ß
             
@@ -30,25 +25,7 @@ class ViewController: UIViewController {
         
         // update tip and total values if necessary
         self.updateValues()
-        
         self.billField.becomeFirstResponder()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onTap(sender: AnyObject) {
@@ -71,10 +48,8 @@ class ViewController: UIViewController {
         let tipPercentages = [0.18,0.2,0.22]
     
         if (billField.text == "") {
-            //TODO: show initial view, animated (if we are clearing the bill amt)
             self.hideElements(true)
         } else {
-            //TODO: show the results view animated
             var billAmount: Double = NSString(string: billField.text).doubleValue
             var tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
             var total = billAmount + tip

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController: UINavigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
+        // Get the viewController with the id "VC"
         let rootViewController: UIViewController = storyBoard.instantiateViewControllerWithIdentifier("VC")as! UIViewController
         
         navigationController.viewControllers = [rootViewController]
@@ -29,9 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-
         // Save the current date and bill amount
         var defaults = NSUserDefaults.standardUserDefaults()
         var nav = self.window?.rootViewController as! UINavigationController
@@ -55,13 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
         var defaults = NSUserDefaults.standardUserDefaults()
         var nav = self.window?.rootViewController as! UINavigationController
         var vc = nav.viewControllers.first as! ViewController
         var billField: UITextField = vc.valueForKey("billField") as! UITextField
 
+        // If a timestamp was saved previously, then retrieve it
         if let lastSavedDate: NSDate = defaults.valueForKey("lastSavedDate") as? NSDate
         {
             var timeInterval : NSTimeInterval = lastSavedDate.timeIntervalSinceNow
