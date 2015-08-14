@@ -12,3 +12,5 @@ Completed User Stories:
  * [x] Optional: Hide the other fields on the main view if the bill amount is empty. 
  
  
+Walkthrough:
+![Video Walkthrough](TipCalculator_VGrospe.gif)
