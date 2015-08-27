@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController: UINavigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
         // Get the viewController with the id "VC"
-        let rootViewController: UIViewController = storyBoard.instantiateViewControllerWithIdentifier("VC")as! UIViewController
+        let rootViewController: UIViewController = storyBoard.instantiateViewControllerWithIdentifier("VC")
         
         navigationController.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
@@ -30,14 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
+        print("app will resign active")
         // Save the current date and bill amount
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var nav = self.window?.rootViewController as! UINavigationController
-        var vc = nav.viewControllers.first as! UIViewController
+        let nav = self.window?.rootViewController as! UINavigationController
+        let vc = nav.viewControllers.first as! ViewController
+        let billField: UITextField = vc.valueForKey("billField") as! UITextField
+        let billValue = billField.text
         
-        var billField: UITextField = vc.valueForKey("billField") as! UITextField
-        var billValue = billField.text
-        
+        let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(billValue, forKey: "lastBillAmount")
         defaults.setValue(NSDate(), forKey: "lastSavedDate")
         defaults.synchronize()
@@ -53,22 +53,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var nav = self.window?.rootViewController as! UINavigationController
-        var vc = nav.viewControllers.first as! ViewController
-        var billField: UITextField = vc.valueForKey("billField") as! UITextField
-        println("app active");
+        print("app did become active")
 
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let nav = self.window?.rootViewController as! UINavigationController
+        let vc = nav.viewControllers.first as! ViewController
+        let billField: UITextField? = vc.valueForKey("billField") as? UITextField
+        let lastSavedDate: NSDate? = defaults.valueForKey("lastSavedDate") as? NSDate
+        
         // If a timestamp was saved previously, then retrieve it
-        if let lastSavedDate: NSDate = defaults.valueForKey("lastSavedDate") as? NSDate
+        if lastSavedDate != nil && billField != nil
         {
-            var timeInterval : NSTimeInterval = lastSavedDate.timeIntervalSinceNow
+            let timeInterval : NSTimeInterval = lastSavedDate!.timeIntervalSinceNow
             if timeInterval > -600 {
                 // Less than 10 minutes, restore last bill amount
-                billField.text = defaults.valueForKey("lastBillAmount") as! String
+                let bill: String? = defaults.valueForKey("lastBillAmount") as? String
+                if (bill != nil) {
+                    billField!.text = bill
+                }
             } else {
                 // More than 10 minutes, clear fields
-                billField.text = ""
+                billField!.text = ""
             }
             vc.showInitialView()
         }

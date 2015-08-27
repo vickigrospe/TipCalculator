@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Retrieve the default tip percentage
-        var savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
+        let savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
         defaultTipControl.selectedSegmentIndex = savedTipControlIndex
     }
     
@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onDefaultTipChanged(sender: AnyObject) {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(defaultTipControl.selectedSegmentIndex, forKey: "defaultTipControlIndex")
         defaults.synchronize()
     }

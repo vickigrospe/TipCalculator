@@ -17,9 +17,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear")
         super.viewWillAppear(animated)
         self.showInitialView()
     }
+    
+/* 
+    override func viewDidAppear(animated: Bool) {
+        print("viewDidAppear")
+        super.viewDidAppear(animated);
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        print("viewDidDisappear")
+        super.viewDidDisappear(animated)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        print("viewWillDisappear")
+        super.viewWillDisappear(animated)
+    }
+*/
     
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
@@ -53,9 +71,9 @@ class ViewController: UIViewController {
         if (billField.text == "") {
             self.hideElements(true)
         } else {
-            var billAmount: Double = NSString(string: billField.text).doubleValue
-            var tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
-            var total = billAmount + tip
+            let billAmount: Double = NSString(string: billField.text!).doubleValue
+            let tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
+            let total = billAmount + tip
             
             tipValue.text = "$\(tip)"
             totalValue.text = "$\(total)"
