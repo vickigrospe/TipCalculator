@@ -17,27 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
         super.viewWillAppear(animated)
-        self.showInitialView()
+        self.showInitialView(false)
     }
-    
-/* 
-    override func viewDidAppear(animated: Bool) {
-        print("viewDidAppear")
-        super.viewDidAppear(animated);
-    }
-
-    override func viewDidDisappear(animated: Bool) {
-        print("viewDidDisappear")
-        super.viewDidDisappear(animated)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        print("viewWillDisappear")
-        super.viewWillDisappear(animated)
-    }
-*/
     
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
@@ -45,14 +27,23 @@ class ViewController: UIViewController {
    
     @IBAction func onEditingAmount(sender: AnyObject) {
         self.updateValues()
+        
+        // Store the amount
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(billField.text, forKey: "lastBillAmount")
+        defaults.synchronize()
     }
     
-    func showInitialView() {
-        // Get saved tip control index
-        let savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
-        tipControl.selectedSegmentIndex = savedTipControlIndex
+    func showInitialView(isFirstAppear: Bool) {
+        if isFirstAppear {
+            // Retrieve saved bill amount, if it exists
+            billField.text = NSUserDefaults.standardUserDefaults().valueForKey("lastBillAmount") as? String
+        }
         
-        // update tip and total values
+        // Retrieve saved tip control index
+        tipControl.selectedSegmentIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
+        
+        // Update tip and total values
         self.updateValues()
         self.billField.becomeFirstResponder()
     }

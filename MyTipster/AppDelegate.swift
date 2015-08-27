@@ -30,15 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        print("app will resign active")
-        // Save the current date and bill amount
-        let nav = self.window?.rootViewController as! UINavigationController
-        let vc = nav.viewControllers.first as! ViewController
-        let billField: UITextField = vc.valueForKey("billField") as! UITextField
-        let billValue = billField.text
-        
+        // Save the current date before app resigns
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(billValue, forKey: "lastBillAmount")
         defaults.setValue(NSDate(), forKey: "lastSavedDate")
         defaults.synchronize()
     }
@@ -53,29 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        print("app did become active")
-
-        let defaults = NSUserDefaults.standardUserDefaults()
         let nav = self.window?.rootViewController as! UINavigationController
         let vc = nav.viewControllers.first as! ViewController
         let billField: UITextField? = vc.valueForKey("billField") as? UITextField
-        let lastSavedDate: NSDate? = defaults.valueForKey("lastSavedDate") as? NSDate
+        let lastSavedDate: NSDate? = NSUserDefaults.standardUserDefaults().valueForKey("lastSavedDate") as? NSDate
         
-        // If a timestamp was saved previously, then retrieve it
+        // If a timestamp and bill amount was saved, then restore view if < 10 min
         if lastSavedDate != nil && billField != nil
         {
-            let timeInterval : NSTimeInterval = lastSavedDate!.timeIntervalSinceNow
-            if timeInterval > -600 {
-                // Less than 10 minutes, restore last bill amount
-                let bill: String? = defaults.valueForKey("lastBillAmount") as? String
-                if (bill != nil) {
-                    billField!.text = bill
-                }
-            } else {
-                // More than 10 minutes, clear fields
-                billField!.text = ""
+            let timeInterval = NSDate().timeIntervalSinceDate(lastSavedDate!);
+            if timeInterval > 600 {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("lastBillAmount")
             }
-            vc.showInitialView()
+            
+            vc.showInitialView(true)
         }
     }
 
