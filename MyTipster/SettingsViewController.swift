@@ -15,11 +15,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
         // Retrieve the default tip percentage
-        let savedTipControlIndex = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
-        defaultTipControl.selectedSegmentIndex = savedTipControlIndex
+        defaultTipControl.selectedSegmentIndex
+            = NSUserDefaults.standardUserDefaults().integerForKey("defaultTipControlIndex")
+        super.viewDidLoad()
     }
     
     @IBAction func onBackCicked(sender: AnyObject) {
