@@ -48,18 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         let nav = self.window?.rootViewController as! UINavigationController
         let vc = nav.viewControllers.first as! ViewController
-        let billField: UITextField? = vc.valueForKey("billField") as? UITextField
-        let lastSavedDate: NSDate? = NSUserDefaults.standardUserDefaults().valueForKey("lastSavedDate") as? NSDate
         
         // If a timestamp and bill amount was saved, then restore view if < 10 min
-        if lastSavedDate != nil && billField != nil
-        {
-            let timeInterval = NSDate().timeIntervalSinceDate(lastSavedDate!);
-            if timeInterval > 600 {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("lastBillAmount")
+        if let billField = vc.valueForKey("billField") as? UITextField{
+            if let lastSavedDate = NSUserDefaults.standardUserDefaults().valueForKey("lastSavedDate") as? NSDate
+            {
+                let timeInterval = NSDate().timeIntervalSinceDate(lastSavedDate);
+                if timeInterval > 600 {
+                    NSUserDefaults.standardUserDefaults().removeObjectForKey("lastBillAmount")
+                }
+                
+                vc.showInitialView(true)
             }
-            
-            vc.showInitialView(true)
         }
     }
 

@@ -17,8 +17,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
+        UIView.animateWithDuration(0.5, animations: {
+            self.billField.center.x += self.view.bounds.width
+            self.tipValue.center.x += self.view.bounds.width
+            self.tipLabel.center.x += self.view.bounds.width
+            self.totalValue.center.x += self.view.bounds.width
+            self.totalLabel.center.x += self.view.bounds.width
+        })
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         self.showInitialView(false)
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIView.animateWithDuration(0.2, animations: {
+            self.billField.center.x -= self.view.bounds.width
+            self.tipValue.center.x -= self.view.bounds.width
+            self.tipLabel.center.x -= self.view.bounds.width
+            self.totalValue.center.x -= self.view.bounds.width
+            self.totalLabel.center.x -= self.view.bounds.width
+        })
+        
+        super.viewWillDisappear(animated)
     }
     
     @IBAction func onTap(sender: AnyObject) {
@@ -45,6 +68,7 @@ class ViewController: UIViewController {
         
         // Update tip and total values
         self.updateValues()
+        
         self.billField.becomeFirstResponder()
     }
     
@@ -58,10 +82,10 @@ class ViewController: UIViewController {
     
     func updateValues() {
         let tipPercentages = [0.18,0.2,0.22]
+
+        self.hideElements(billField.text == "")
  
-        if (billField.text == "") {
-            self.hideElements(true)
-        } else {
+        if (billField.text != "") {
             let billAmount: Double = NSString(string: billField.text!).doubleValue
             let tip = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
             let total = billAmount + tip
@@ -70,8 +94,6 @@ class ViewController: UIViewController {
             totalValue.text = "$\(total)"
             tipValue.text = String(format: "$%.2f", tip)
             totalValue.text = String(format: "$%.2f", total)
-            
-            self.hideElements(false)
         }
     }
 }
